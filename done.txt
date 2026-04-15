@@ -1,0 +1,3 @@
+fn : disponible 
+fn : prix consommation
+fn : prix sejour
