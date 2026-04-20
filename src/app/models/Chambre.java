@@ -1,6 +1,6 @@
 package app.models;
-import java.util.*;
 import java.time.LocalDate;
+import java.util.*;
 
 /**
  * 
@@ -42,9 +42,23 @@ public class Chambre {
     //services
     //get if this room is free
     public boolean isfree(LocalDate deb, LocalDate fin){
-        //if the dbut is in an intervall dead
+        //Check the deb of the reservation
         for(Reservation r : listRes){
-
+            if(deb.isAfter(r.debut) && deb.isBefore(r.fin)){
+                return false;
+            }
+        }
+        //Check the fin of the reservation
+        for(Reservation r : listRes){
+            if(fin.isAfter(r.debut) && fin.isBefore(r.fin)){
+                return false;
+            }
+        }
+        //check if there's a reservation in the middle only the deb
+        for(Reservation r : listRes){
+            if(r.debut.isAfter(deb) && r.fin.isBefore(fin)){
+                return false;
+            }
         }
         return true;
     }

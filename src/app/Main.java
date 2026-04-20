@@ -44,7 +44,7 @@ public class Main{
         consoma1_idir.ajouteProduit(product3);
         
         consoma1_idir.ajouteProduit(product2);
-        HotelServ hotelView = new HotelServ(hotel1);
+        HotelView hotelView = new HotelView(hotel1);
         
     }
 }
