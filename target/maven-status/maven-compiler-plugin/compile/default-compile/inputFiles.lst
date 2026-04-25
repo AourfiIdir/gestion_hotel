@@ -1,0 +1,16 @@
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/models/DAO/ClientDao.java
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/utils/InitDb.java
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/Main.java
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/views/HotelView.java
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/models/Produit.java
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/models/Chambre.java
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/models/Reservation.java
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/views/LoginView.java
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/models/Client.java
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/models/Consomation.java
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/models/Hotel.java
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/controllers/ChambreCtr.java
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/utils/DbConnection.java
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/views/ChambreView.java
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/models/Sejour.java
+/home/idir/coding/java/gestion_hotel/src/main/java/com/app/controllers/HotelSearchCtr.java
