@@ -1,11 +1,7 @@
 package com.app.models;
-import java.io.*;
-import java.time.LocalDate;
 import java.util.*;
 
 public class Sejour {
-
-    private double facturation;
 
     private Reservation reservation;
 
@@ -25,8 +21,16 @@ public class Sejour {
         for(Consomation c:listConsom){
             somme +=c.prixConsommation();
         }
-        return facturation = somme + reservation.chambre.prix * (reservation.fin.toEpochDay() - reservation.debut.toEpochDay());
+        return somme + reservation.chambre.prix * (reservation.fin.toEpochDay() - reservation.debut.toEpochDay());
         
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public double getPrixSejour() {
+        return prixSejour();
     }
 
 }

@@ -22,6 +22,7 @@ public class HotelView extends JPanel{
     JLabel descrJLabel;
     JPanel descriptionPanel = new JPanel();
     JButton myReservationsBtn;
+    JButton mySejoursBtn;
     //reservation
     //reservation - search for a room
     JLabel chambresLabel;
@@ -57,9 +58,17 @@ public class HotelView extends JPanel{
         myReservationsBtn.setFont(new Font("SansSerif", Font.BOLD, 13));
         myReservationsBtn.addActionListener(e -> new ReservationView(this.client));
 
+        mySejoursBtn = new JButton("My Sejours");
+        mySejoursBtn.setFocusPainted(false);
+        mySejoursBtn.setBackground(new Color(65, 100, 170));
+        mySejoursBtn.setForeground(Color.WHITE);
+        mySejoursBtn.setFont(new Font("SansSerif", Font.BOLD, 13));
+        mySejoursBtn.addActionListener(e -> new SejourView(this.client));
+
         JPanel topRight = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0));
         topRight.setOpaque(false);
         topRight.add(myReservationsBtn);
+        topRight.add(mySejoursBtn);
 
         descriptionPanel.add(descrJLabel);
         descriptionPanel.add(topRight, BorderLayout.EAST);
