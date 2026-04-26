@@ -22,8 +22,6 @@ public class LoginCtr implements ActionListener{
         }else{
               lv.showError("Nom and Prenom are mandatory");
         }
-        
-
     }
     
 }

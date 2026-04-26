@@ -40,7 +40,7 @@ public class LoginView extends JFrame{
         }catch(IOException e){
             e.printStackTrace();
         }
-
+        
         final BufferedImage backgroundImage = image;
         backgroundPanel = new JPanel() {
             @Override

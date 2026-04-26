@@ -14,6 +14,7 @@ public class Reservation {
 
     public String reservé;
 
+    public Sejour sejour;
     public Reservation(LocalDate debut,LocalDate fin,Chambre chambre,Client client) {
         this.debut = debut;
         this.fin = fin;
@@ -23,7 +24,7 @@ public class Reservation {
         client.ajouterRes(this);
     }
     
-    public Sejour sejour;
+    
     public void setSejour(Sejour sejour){
         this.sejour = sejour;
     }

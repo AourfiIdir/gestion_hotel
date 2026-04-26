@@ -18,8 +18,8 @@ public class HotelSearchCtr implements  ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         chambres = new Vector<Chambre>();
-        this.deb = LocalDate.parse(hotelView.dateDebut.getText());
-        this.fin = LocalDate.parse(hotelView.dateFin.getText());
+        this.deb = hotelView.getDeb();
+        this.fin = hotelView.getFin();
         for(Chambre ch : hotel.listChambre){
             JButton chambre;
             if(ch.isfree(deb,fin)){
@@ -34,7 +34,7 @@ public class HotelSearchCtr implements  ActionListener{
         }else{
             for(Chambre r:chambres){
             JButton ch = new JButton(Integer.toString(r.num));
-            ChambreCtr openRoom = new ChambreCtr(r);
+            ChambreCtr openRoom = new ChambreCtr(r,hotelView);
             ch.addActionListener(openRoom);
             //Add an action listener to open a Chambre JFrame for each one
             hotelView.chambrePanel.add(ch);

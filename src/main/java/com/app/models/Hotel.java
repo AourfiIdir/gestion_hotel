@@ -22,7 +22,6 @@ public class Hotel {
     /**
      * Default constructor
      */
-
     public Hotel(String nom,String address,int notation) {
     	this.nom=nom;
     	this.address=address;

@@ -1,7 +1,6 @@
 package com.app;
 import com.app.models.*;
 import com.app.views.*;
-import com.app.controllers.*;
 import com.app.utils.InitDb;
 import java.time.LocalDate;
 public class Main{

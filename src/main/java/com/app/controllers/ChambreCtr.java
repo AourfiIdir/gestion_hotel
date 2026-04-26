@@ -8,11 +8,13 @@ import javax.swing.*;
 
 public class ChambreCtr implements ActionListener{
     Chambre ch;
-    public ChambreCtr(Chambre ch){
+    HotelView  hotelView;
+    public ChambreCtr(Chambre ch,HotelView hotelView){
         this.ch = ch;
+        this.hotelView=hotelView;
     }
     @Override
     public void actionPerformed(ActionEvent e){
-        ChambreView chView = new ChambreView(ch);
+        ChambreView chView = new ChambreView(ch,hotelView);
     }
 }

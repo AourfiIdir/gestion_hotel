@@ -14,13 +14,14 @@ import javax.swing.border.LineBorder;
 
 public class HotelView extends JPanel{
 
-    
+    public Client client;
     LocalDate deb;
     LocalDate fin;
 
     //description
     JLabel descrJLabel;
     JPanel descriptionPanel = new JPanel();
+    JButton myReservationsBtn;
     //reservation
     //reservation - search for a room
     JLabel chambresLabel;
@@ -32,6 +33,7 @@ public class HotelView extends JPanel{
 
     public HotelView(Hotel hotel,Client client){
         // Main panel
+        this.client = client;
         this.setLayout(new BorderLayout(18, 18));
         this.setBackground(new Color(242, 246, 252));
         this.setBorder(new EmptyBorder(20, 20, 20, 20));
@@ -48,7 +50,19 @@ public class HotelView extends JPanel{
             "  |  Rating: " + hotel.notation +
             "  |  Guest: " + client.nom + " " + client.prenom + "</span></html>"
         );
+        myReservationsBtn = new JButton("My Reservations");
+        myReservationsBtn.setFocusPainted(false);
+        myReservationsBtn.setBackground(new Color(65, 100, 170));
+        myReservationsBtn.setForeground(Color.WHITE);
+        myReservationsBtn.setFont(new Font("SansSerif", Font.BOLD, 13));
+        myReservationsBtn.addActionListener(e -> new ReservationView(this.client));
+
+        JPanel topRight = new JPanel(new FlowLayout(FlowLayout.RIGHT, 0, 0));
+        topRight.setOpaque(false);
+        topRight.add(myReservationsBtn);
+
         descriptionPanel.add(descrJLabel);
+        descriptionPanel.add(topRight, BorderLayout.EAST);
         this.add(descriptionPanel,BorderLayout.NORTH);
 
         //------------------------
@@ -130,6 +144,12 @@ public class HotelView extends JPanel{
 
         this.add(contentPanel,BorderLayout.CENTER);
 
+    }
+    public LocalDate getDeb(){
+        return LocalDate.parse(dateDebut.getText());
+    }
+    public LocalDate getFin(){
+        return LocalDate.parse(dateFin.getText());
     }
 
 }
