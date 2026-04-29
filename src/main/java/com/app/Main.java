@@ -48,7 +48,6 @@ public class Main{
         
         consoma1_idir.ajouteProduit(product2);
         //HotelView hotelView = new HotelView(hotel1);
-        LoginView loginView = new LoginView();
-        
+        LoginView loginView = new LoginView();       
     }
 }
