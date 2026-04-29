@@ -20,6 +20,7 @@ public class Main{
 
         Hotel hotel1 = InitDb.getHotel();
 
+        
 
         Chambre chambre1 = new Chambre(1,"simple",150,1,hotel1);
         Chambre chambre2 = new Chambre(2,"premium",200,2,hotel1);

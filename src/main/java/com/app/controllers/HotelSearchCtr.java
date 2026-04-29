@@ -29,9 +29,11 @@ public class HotelSearchCtr implements  ActionListener{
             }
             chambres.add(ch);
         }
+        hotelView.chambrePanel.removeAll();
         if(chambres.isEmpty()){
             hotelView.chambrePanel.add(new JLabel("no room found"));
         }else{
+
             for(Chambre r:chambres){
             JButton ch = new JButton(Integer.toString(r.num));
             ChambreCtr openRoom = new ChambreCtr(r,hotelView);
