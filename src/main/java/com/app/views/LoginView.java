@@ -15,7 +15,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import com.app.controllers.*;
 import com.app.models.*;
-
+import java.util.function.Supplier;
 public class LoginView extends JFrame{
     //Declaration
     JLabel name;
@@ -125,7 +125,10 @@ public class LoginView extends JFrame{
         this.setContentPane(backgroundPanel);
 
         // Actions
-        LoginCtr loginCtr = new LoginCtr(this);
+        Supplier<LoginCtr> myLogin = ()->{
+            return new LoginCtr(this);
+        };
+        LoginCtr loginCtr = myLogin.get();
         login.addActionListener(loginCtr);
 
         this.setVisible(true);

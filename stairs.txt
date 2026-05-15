@@ -1,0 +1,2 @@
+check room find algorithm
+exception handling

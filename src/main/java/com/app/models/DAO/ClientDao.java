@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Connection;
 import java.util.Optional;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Vector;
+
 
 public class ClientDao implements DAO<Client>{
 
@@ -67,12 +67,14 @@ public class ClientDao implements DAO<Client>{
     }
 
     @Override
-    public Optional<Client> get() {
-        String sql = "SELECT nom, prenom FROM clients ORDER BY id LIMIT 1";
+    public Optional<Client> get(String s) {
+
+        String sql = "SELECT nom, prenom FROM clients WHERE nom = ? ORDER BY id LIMIT 1";
 
         try (Connection conn = DbConnection.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+             PreparedStatement stmt = conn.prepareStatement(sql)){
+             stmt.setString(1,s);
+             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
                 return Optional.of(mapClient(rs));
@@ -85,8 +87,8 @@ public class ClientDao implements DAO<Client>{
     }
 
     @Override
-    public List<Client> getAll() {
-        List<Client> clients = new ArrayList<>();
+    public Vector<Client> getAll() {
+        Vector<Client> clients = new Vector<>();
         String sql = "SELECT nom, prenom FROM clients ORDER BY id";
 
         try (Connection conn = DbConnection.getConnection();

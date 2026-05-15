@@ -90,17 +90,14 @@ public class ChambreView extends JFrame{
                 }
                 g2d.dispose();
             }
-        };
-        imagePanel.setPreferredSize(new Dimension(560, 420));
+        }; 
+        imagePanel.setPreferredSize(new Dimension(560, 420)); 
         imagePanel.setBorder(new LineBorder(new Color(212, 220, 232), 1, true));
-
-        JPanel rightCard = new JPanel(new BorderLayout(12, 12));
-        rightCard.setBackground(Color.WHITE);
+        JPanel rightCard = new JPanel(new BorderLayout(12, 12)); rightCard.setBackground(Color.WHITE);
         rightCard.setBorder(BorderFactory.createCompoundBorder(
             new LineBorder(new Color(212, 220, 232), 1, true),
             new EmptyBorder(14, 14, 14, 14)
         ));
-
         dateLabel = new JLabel(buildDateText());
         dateLabel.setFont(new Font("SansSerif", Font.PLAIN, 13));
         dateLabel.setForeground(new Color(75, 90, 118));
@@ -122,7 +119,6 @@ public class ChambreView extends JFrame{
             infoLabel.setText("Reservation created. You can view it in My Reservations.");
             reservation.setEnabled(false);
         });
-
         JPanel actionPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 0));
         actionPanel.setOpaque(false);
         actionPanel.add(reservation);

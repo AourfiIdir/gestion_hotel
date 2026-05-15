@@ -1,0 +1,15 @@
+title = "myHotel"
+version = "1.0.0"
+[admin]
+name = "Admin"
+description = "The admin architecture allows the owner of the application to make visualize clients and reseravtions"
+[[admin.feature]]
+name = ""
+description = ""
+[user]
+name = "User"
+description = "The user architecture allows the user to see available rooms in his own preferred date and eventually make a booking, Also the user could use the application to add his own producted consumed in his stay"
+[[user.feature]]
+name = ""
+description = ""
+

@@ -3,6 +3,7 @@ import com.app.models.*;
 import com.app.views.*;
 import java.awt.event.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import javax.swing.*;
 public class HotelSearchCtr implements  ActionListener{
@@ -18,8 +19,12 @@ public class HotelSearchCtr implements  ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         chambres = new Vector<Chambre>();
-        this.deb = hotelView.getDeb();
-        this.fin = hotelView.getFin();
+        try{
+            this.deb = hotelView.getDeb();
+            this.fin = hotelView.getFin();
+        }catch(DateTimeParseException ex){
+            ex.printStackTrace();
+        }
         for(Chambre ch : hotel.listChambre){
             JButton chambre;
             if(ch.isfree(deb,fin)){

@@ -8,6 +8,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -100,8 +102,8 @@ public class HotelView extends JPanel{
         actionLabel.setForeground(new Color(70, 80, 100));
 
         //reservation - search
-        dateDebut = new JTextField("enter date deb");
-        dateFin = new JTextField("entre date fin");
+        dateDebut = new JTextField("");
+        dateFin = new JTextField("");
         search = new JButton("Search");
         dateDebut.setPreferredSize(new Dimension(220, 40));
         dateFin.setPreferredSize(new Dimension(220, 40));
@@ -154,10 +156,10 @@ public class HotelView extends JPanel{
         this.add(contentPanel,BorderLayout.CENTER);
 
     }
-    public LocalDate getDeb(){
+    public LocalDate getDeb() throws DateTimeParseException{
         return LocalDate.parse(dateDebut.getText());
     }
-    public LocalDate getFin(){
+    public LocalDate getFin() throws DateTimeParseException{
         return LocalDate.parse(dateFin.getText());
     }
 
