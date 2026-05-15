@@ -26,12 +26,18 @@ public class Chambre {
      * Default constructor
      */
     public Chambre(int etage,String type,double prix,int num,Hotel hotel) {
+        this(etage, type, prix, num, hotel, true);
+    }
+
+    public Chambre(int etage, String type, double prix, int num, Hotel hotel, boolean registerInHotel) {
     	this.etage=etage;
     	this.type=type;
     	this.prix=prix;
     	this.num=num;
     	this.hotel=hotel;
-        hotel.ajouteChambre(this);
+        if (registerInHotel) {
+            hotel.ajouteChambre(this);
+        }
     }
     
 

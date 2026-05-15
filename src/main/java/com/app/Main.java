@@ -1,11 +1,11 @@
 package com.app;
 import com.app.models.*;
+import com.app.models.DAO.*;
 import com.app.views.*;
 import com.app.utils.InitDb;
 import java.time.LocalDate;
 public class Main{
     
-
     public static void main(String[]args){
         InitDb.initDb();
 
@@ -26,14 +26,30 @@ public class Main{
         Chambre chambre2 = new Chambre(2,"premium",200,2,hotel1);
         Chambre chambre3 = new Chambre(3,"simple",200,3,hotel1);
 
+        ChambreDao chambreDao = new ChambreDao();
+        
+        chambreDao.insert(chambre1);
+        chambreDao.insert(chambre2);
+        chambreDao.insert(chambre3);
+
         Client zizou = new Client("zizou","lmistrale",hotel1);
         Client idir = new Client("idir","aourfi",hotel1);
         Client mourad = new Client("mourad","nassiri",hotel1);
 
+        ClientDao clientDao = new ClientDao();
+        clientDao.insert(zizou);
+        clientDao.insert(idir);
+        clientDao.insert(mourad);
+
         Reservation ch1_zizou = new Reservation(date1_d,date1_f,chambre1,zizou);
         Reservation ch2_idir = new Reservation(date2_d,date2_f,chambre2,idir);
         Reservation ch3_mourad = new Reservation(date3_d,date3_f,chambre3,mourad);
-
+/* 
+        ReservationDao reservationDao = new ReservationDao();
+        reservationDao.insert(ch1_zizou);
+        reservationDao.insert(ch2_idir);
+        reservationDao.insert(ch3_mourad);
+*/  
         Sejour zizouSej = new Sejour(ch1_zizou);
         Sejour idirSej = new Sejour(ch2_idir);
 

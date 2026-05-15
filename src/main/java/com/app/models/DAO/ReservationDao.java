@@ -15,16 +15,12 @@ public class ReservationDao implements DAO<Reservation> {
 
     @Override
     public void insert(Reservation r) {
-        String insertSql = "INSERT INTO reservations (debut, fin, client_id, chambre_id, reserve_status) VALUES (?, ?, ?, ?, ?)";
+        String insertSql = "MERGE INTO reservations (debut, fin, client_id, chambre_id, reserve_status) KEY (debut, fin, client_id, chambre_id) VALUES (?, ?, ?, ?, ?)";
 
         try (Connection conn = DbConnection.getConnection()) {
             Long clientId = findClientId(conn, r.client);
             Long chambreId = findChambreId(conn, r.chambre);
-            /* 
-            if (clientId == null || chambreId == null) {
-                throw new IllegalStateException("Client or Chambre not found in database");
-            }
-            */
+            
            if(clientId == null && chambreId == null){
                 throw new IllegalStateException("Client and chambre not found in database");
            }else if(chambreId == null){
@@ -161,8 +157,8 @@ public class ReservationDao implements DAO<Reservation> {
         java.time.LocalDate debut = rs.getDate("debut").toLocalDate();
         java.time.LocalDate fin = rs.getDate("fin").toLocalDate();
 
-        Client client = new Client(rs.getString("nom"), rs.getString("prenom"), InitDb.getHotel());
-        Chambre chambre = new Chambre(rs.getInt("etage"), rs.getString("type"), rs.getDouble("prix"), rs.getInt("num"), InitDb.getHotel());
+        Client client = new Client(rs.getString("nom"), rs.getString("prenom"), InitDb.getHotel(), false);
+        Chambre chambre = new Chambre(rs.getInt("etage"), rs.getString("type"), rs.getDouble("prix"), rs.getInt("num"), InitDb.getHotel(), false);
 
         Reservation reservation = new Reservation(debut, fin, chambre, client);
         reservation.reservé = rs.getString("reserve_status");

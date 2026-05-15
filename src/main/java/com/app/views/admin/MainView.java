@@ -8,6 +8,8 @@ import com.app.models.DAO.*;
 import com.app.controllers.admin.*;
 public class MainView extends JFrame{
     ClientDao clientDao;
+    ChambreDao chambreDao;
+    ReservationDao reservationDao;
     JPanel clientsPanel;
     Vector<Client> myClients;
     JLabel countLabel;
@@ -36,7 +38,9 @@ public class MainView extends JFrame{
 
         //initilialization
         clientDao = new ClientDao();
-        myClients = getClients(clientDao);
+        chambreDao = new ChambreDao();
+        reservationDao = new ReservationDao();
+        myClients = getClients(clientDao, chambreDao, reservationDao);
         clientsPanel = new JPanel();
         clientsPanel.setLayout(new BoxLayout(clientsPanel, BoxLayout.Y_AXIS));
         clientsPanel.setBackground(Color.WHITE);
@@ -71,14 +75,53 @@ public class MainView extends JFrame{
 
     }
 
-    public Vector<Client> getClients(ClientDao clientDao){
-        Vector<Client> myClients;
-        myClients = clientDao.getAll();
-        return myClients;
+    public Vector<Client> getClients(ClientDao clientDao, ChambreDao chambreDao, ReservationDao reservationDao){
+        Vector<Client> loadedClients = clientDao.getAll();
+        Vector<Chambre> loadedChambres = chambreDao.getAll();
+        Vector<Reservation> loadedReservations = reservationDao.getAll();
+
+        for (Client client : loadedClients) {
+            client.listRes.clear();
+        }
+
+        for (Reservation reservation : loadedReservations) {
+            Client client = findClient(loadedClients, reservation.client);
+            Chambre chambre = findChambre(loadedChambres, reservation.chambre);
+
+            if (client != null) {
+                reservation.client = client;
+                client.ajouterRes(reservation);
+            }
+
+            if (chambre != null) {
+                reservation.chambre = chambre;
+                chambre.ajouterRes(reservation);
+            }
+        }
+
+        return loadedClients;
+    }
+
+    private Client findClient(Vector<Client> clients, Client target) {
+        for (Client client : clients) {
+            if (client.nom.equals(target.nom) && client.prenom.equals(target.prenom)) {
+                return client;
+            }
+        }
+        return null;
+    }
+
+    private Chambre findChambre(Vector<Chambre> chambres, Chambre target) {
+        for (Chambre chambre : chambres) {
+            if (chambre.num == target.num) {
+                return chambre;
+            }
+        }
+        return null;
     }
 
     private void refreshClients(){
-        myClients = getClients(clientDao);
+        myClients = getClients(clientDao, chambreDao, reservationDao);
         clientsPanel.removeAll();
 
         countLabel.setText("Total clients: " + myClients.size());

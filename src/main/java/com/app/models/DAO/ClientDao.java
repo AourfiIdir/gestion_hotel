@@ -14,9 +14,21 @@ public class ClientDao implements DAO<Client>{
 
     @Override
     public void insert(Client t) {
+        String findSql = "SELECT id FROM clients WHERE hotel_id = ? AND nom = ? AND prenom = ? LIMIT 1";
         String insertClientSql = "INSERT INTO clients (hotel_id, nom, prenom) VALUES (?, ?, ?)";
 
         try (Connection conn = DbConnection.getConnection()) {
+            try (PreparedStatement findStmt = conn.prepareStatement(findSql)) {
+                findStmt.setLong(1, InitDb.getHotelId());
+                findStmt.setString(2, t.nom);
+                findStmt.setString(3, t.prenom);
+                try (ResultSet rs = findStmt.executeQuery()) {
+                    if (rs.next()) {
+                        return; // client already exists
+                    }
+                }
+            }
+
             try (PreparedStatement stmt = conn.prepareStatement(insertClientSql)) {
                 stmt.setLong(1, InitDb.getHotelId());
                 stmt.setString(2, t.nom);
@@ -106,7 +118,7 @@ public class ClientDao implements DAO<Client>{
     }
 
     private Client mapClient(ResultSet rs) throws SQLException {
-        return new Client(rs.getString("nom"), rs.getString("prenom"), InitDb.getHotel());
+        return new Client(rs.getString("nom"), rs.getString("prenom"), InitDb.getHotel(), false);
     }
 
     /* 

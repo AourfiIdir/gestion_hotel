@@ -12,10 +12,16 @@ public class Client {
      * Default constructor
      */
     public Client(String nom,String prenom,Hotel hotel) {
+        this(nom, prenom, hotel, true);
+    }
+
+    public Client(String nom, String prenom, Hotel hotel, boolean registerInHotel) {
         this.nom = nom;
         this.prenom = prenom;
         this.hotel = hotel;
-        hotel.ajouteClient(this);
+        if (registerInHotel) {
+            hotel.ajouteClient(this);
+        }
     }
 
     /**

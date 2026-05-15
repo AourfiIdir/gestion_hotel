@@ -1,2 +1,4 @@
-check room find algorithm
-exception handling
+errors:
+illegale statement Exception:
+chambres created in main are not inserted in the db
+
