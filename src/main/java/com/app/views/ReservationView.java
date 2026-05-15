@@ -117,7 +117,11 @@ public class ReservationView extends JFrame{
         confirmButton.setFocusPainted(false);
         confirmButton.setFont(new Font("SansSerif", Font.BOLD, 13));
         confirmButton.setPreferredSize(new java.awt.Dimension(190, 36));
-
+        JButton cancelButton = new JButton();
+        cancelButton.setFocusPainted(false);
+        cancelButton.setFont(new Font("SansSerif", Font.BOLD, 13));
+        cancelButton.setPreferredSize(new java.awt.Dimension(190, 36));
+ 
         if (reservation.sejour == null) {
             confirmButton.setText("Confirm (Create Sejour)");
             confirmButton.setBackground(new Color(41, 124, 87));
@@ -125,6 +129,17 @@ public class ReservationView extends JFrame{
             confirmButton.addActionListener(e -> {
                 new Sejour(reservation);
                 refreshReservations();
+            });
+            cancelButton.setText("Cancel Reservation");
+            cancelButton.setBackground(new Color(220, 60, 60));
+            cancelButton.setForeground(Color.WHITE);
+            cancelButton.addActionListener(e -> {
+               // remove reservation from client and chambre, then refresh view
+               client.listRes.remove(reservation);
+               if (reservation.chambre != null) {
+                   reservation.chambre.listRes.remove(reservation);
+               }
+               refreshReservations();
             });
         } else {
             confirmButton.setText("Sejour already created");
@@ -134,6 +149,7 @@ public class ReservationView extends JFrame{
         }
 
         actionPanel.add(confirmButton);
+        actionPanel.add(cancelButton);
 
         card.add(textPanel, BorderLayout.CENTER);
         card.add(actionPanel, BorderLayout.EAST);

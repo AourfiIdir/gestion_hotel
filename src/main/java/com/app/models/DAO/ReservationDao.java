@@ -25,12 +25,12 @@ public class ReservationDao implements DAO<Reservation> {
                 throw new IllegalStateException("Client or Chambre not found in database");
             }
             */
-           if(clientId == null){
-                throw new IllegalStateException("Client not found in database");
+           if(clientId == null && chambreId == null){
+                throw new IllegalStateException("Client and chambre not found in database");
            }else if(chambreId == null){
                 throw new IllegalStateException("Chambre not found in database");
-           }else if(clientId == null || chambreId == null) {
-                throw new IllegalStateException("Client or Chambre not found in database");
+           }else if(clientId == null) {
+                throw new IllegalStateException("Client not found in database");
             }
             try (PreparedStatement stmt = conn.prepareStatement(insertSql)) {
                 stmt.setDate(1, Date.valueOf(r.debut));

@@ -42,25 +42,14 @@ public class Chambre {
     //services
     //get if this room is free
     public boolean isfree(LocalDate deb, LocalDate fin){
-        //Check the deb of the reservation
         for(Reservation r : listRes){
-            if(deb.isAfter(r.debut) && deb.isBefore(r.fin)){
-                return false;
-            }
-        }
-        //Check the fin of the reservation
-        for(Reservation r : listRes){
-            if(fin.isAfter(r.debut) && fin.isBefore(r.fin)){
-                return false;
-            }
-        }
-        //check if there's a reservation in the middle only the deb
-        for(Reservation r : listRes){
-            if(r.debut.isAfter(deb) && r.fin.isBefore(fin)){
+            // two intervals [r.debut, r.fin] and [deb, fin] overlap unless
+            // r.fin < deb OR r.debut > fin
+            if(!(r.fin.isBefore(deb) || r.debut.isAfter(fin))){
                 return false;
             }
         }
         return true;
+    
     }
-
 }

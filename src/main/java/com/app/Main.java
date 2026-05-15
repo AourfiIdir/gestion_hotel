@@ -9,14 +9,14 @@ public class Main{
     public static void main(String[]args){
         InitDb.initDb();
 
-        LocalDate date1_d = LocalDate.parse("2024-06-01");
-        LocalDate date1_f = LocalDate.parse("2024-06-10");
+        LocalDate date1_d = LocalDate.parse("2026-06-01");
+        LocalDate date1_f = LocalDate.parse("2026-06-10");
 
-        LocalDate date2_d = LocalDate.parse("2024-06-01");
-        LocalDate date2_f = LocalDate.parse("2024-06-10");
+        LocalDate date2_d = LocalDate.parse("2026-06-01");
+        LocalDate date2_f = LocalDate.parse("2026-06-10");
 
-        LocalDate date3_d = LocalDate.parse("2024-06-01");
-        LocalDate date3_f = LocalDate.parse("2024-06-10");
+        LocalDate date3_d = LocalDate.parse("2026-07-01");
+        LocalDate date3_f = LocalDate.parse("2026-07-10");
 
         Hotel hotel1 = InitDb.getHotel();
 
